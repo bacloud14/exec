@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  h1 ID: #{execution._id}
+  
+  p #[strong Title:] 
+    a(href=execution.session.url) #{execution.session.title}
+  p #[strong Imprint:] #{execution.imprint}
+
+  p #[strong Status:] 
+    if execution.status=='Running'
+      span.text-success #{execution.status}
+    else if execution.status=='exec crushed'
+      span.text-danger #{execution.status}
+    else if execution.status=='Execution crushed'
+      span.text-danger #{execution.status}
+    else
+      span.text-warning #{execution.status} 
+      
+  if execution.status!='Running'
+    p #[strong Due back:] #{execution.due_back_formatted}
+
+  hr
+  p
+    a(href=execution.url+'/delete') Delete execution
+  p
+    a(href=execution.url+'/update') Update execution

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each val in execution_list
+    li 
+      a(href=val.url) #{val.session.title} : #{val.imprint} - 
+      if val.status=='Running'
+        span.text-success #{val.status}
+      else if val.status=='exec crushed'
+        span.text-danger #{val.status}
+      else if val.status=='Execution crushed'
+        span.text-danger #{val.status}
+      else
+        span.text-warning #{val.status} 
+      if val.status!='Running'
+        span  (Due: #{val.due_back_formatted} )
+        
+
+  else
+    li There are no session copies in this exec

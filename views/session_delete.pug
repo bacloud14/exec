@@ -1,0 +1,48 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{session.title}
+  
+  p #[strong Author:] 
+    a(href=session.author.url) #{session.author.name}
+  p #[strong Summary:] #{session.summary}
+  p #[strong Genre:] 
+    each val in session.genre
+      a(href=val.url) #{val.name}
+      |, 
+
+  hr
+  
+  if session_executions.length
+  
+    p #[strong Delete the following copies before attempting to delete this Session.]
+  
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Executions
+    
+        each session_copy in session_executions
+          hr
+          if session_copy.status=='Running'
+            p.text-success #{session_copy.status}
+          else if session_copy.status=='exec crushed'
+            p.text-danger #{session_copy.status}
+          else if session_copy.status=='Execution crushed'
+            p.text-danger #{session_copy.status}
+          else
+            p.text-warning #{session_copy.status} 
+          p #[strong Imprint:] #{session_copy.imprint}
+          if session_copy.status!='Running'
+            p #[strong Due back:] #{session_copy.due_back}
+          p #[strong Id:] 
+            a(href=session_copy.url) #{session_copy._id}
+
+  else
+    p Do you really want to delete this Session?
+    
+    form(method='POST' action='')
+      div.form-group
+        input#id.form-control(type='hidden',name='id', required='true', value=session._id )
+
+      button.btn.btn-primary(type='submit') Delete

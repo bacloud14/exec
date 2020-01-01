@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1 #{title}: #{session.title}
+  
+  p #[strong Author:] 
+    a(href=session.author.url) #{session.author.name}
+  p #[strong Summary:] #{session.summary}
+  p #[strong Genre:] 
+    each val in session.genre
+      a(href=val.url) #{val.name}
+      |, 
+  
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Executions
+    
+    each val in session_executions
+      hr
+      if val.status=='Running'
+        p.text-success #{val.status}
+      else if val.status=='exec crushed'
+        p.text-danger #{val.status}
+      else if val.status=='Execution crushed'
+        p.text-danger #{val.status}
+      else
+        p.text-warning #{val.status} 
+      p #[strong Imprint:] #{val.imprint}
+      if val.status!='Running'
+        p #[strong Due back:] #{val.due_back}
+      p #[strong Id:] 
+        a(href=val.url) #{val._id}
+ 
+    else
+      p There are no copies of this session in the exec.
+      
+  hr
+  p
+    a(href=session.url+'/delete') Delete Session
+  p
+    a(href=session.url+'/update') Update Session

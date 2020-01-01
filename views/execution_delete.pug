@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+  h1= title
+  
+  p #[strong Do you really want to delete this execution?]
+  
+  div(style="margin-left:20px")
+
+    p #[strong ID]: #{execution._id}
+  
+    p #[strong Title:] 
+      a(href=execution.session.url) #{execution.session.title}
+    
+    p #[strong Imprint:] #{execution.imprint}
+
+    p #[strong Status:] 
+      if execution.status=='Running'
+        span.text-success #{execution.status}
+      else if execution.status=='exec crushed'
+        span.text-danger #{execution.status}
+      else if execution.status=='Execution crushed'
+        span.text-danger #{execution.status}
+      else
+        span.text-warning #{execution.status} 
+      
+    if execution.status!='Running'
+      p #[strong Due back:] #{execution.due_back_formatted}
+
+  form(method='POST' action='')
+    div.form-group
+      input#id.form-control(type='hidden',name='id', required='true', value=execution._id )
+
+    button.btn.btn-primary(type='submit') Delete

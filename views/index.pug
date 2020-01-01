@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Code execution report], a light service to track execution of your code (use only for development and experiment).
+  ul
+    li= 'a session is defined to fit few executions together, if you are working on different subjects'
+    li= 'an execution is a code block to track, It can be one of the following states: Running, Passive, Exec crushed, Execution crushed'
+  ul
+    li(style=" color: #464646")= 'Running'
+    li(style=" color: #464646")= 'Passive'
+    li(style=" color: #464646")= 'Exec crushed'
+    li(style=" color: #464646")= 'Execution crushed'
+
+  h1 Exec statistics dashboard
+
+  if error
+    p Error getting statistics dashboard. It seems the whole service is down.
+  else
+
+    p The exec service has the following record counts:
+
+    ul
+      li #[strong All sessions running for all users:] !{data.session_count}
+      li #[strong All executions running for all users:] !{data.execution_count}
+      li #[strong Executions running:] !{data.execution_running_count}
+      li #[strong Users:] !{data.author_count}
+      li #[strong Your uniq UID:] !{_uid}
+      p 
+      p Time to live for your whole sessions is 14 days
+  |
+  hr(style="height: 1px; color: #F00; background-color: #F00; ")
+  |
+  h1 Exec Clients

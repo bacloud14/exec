@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 Author: #{author.name}
+  p #{author.lifespan}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Sessions
+    
+    dl
+    each session in author_sessions
+      dt 
+        a(href=session.url) #{session.title}
+      dd #{session.summary}
+
+    else
+      p This author has no sessions.

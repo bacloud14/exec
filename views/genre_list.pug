@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+  each val in list_genres
+    li 
+      a(href=val.url) #{val.name}
+      a(href=session_.id) #{session_.id}
+  else
+    li There are no genre.
