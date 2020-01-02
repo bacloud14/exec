@@ -41,3 +41,10 @@ The service is accessible through http://130.61.120.197/ to be less memorable.
 ### Contact:
 bacloud[fourteen][at]gmail.com
 
+Credit
+======
+Both data model and project code initially taken and modified from :
+    What: express-locallibrary-tutorial
+    Source URL: https://github.com/mdn/express-locallibrary-tutorial
+    Initiator: MDN Web Docs
+    License: CC0-1.0
