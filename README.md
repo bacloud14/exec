@@ -21,6 +21,9 @@ An execution is a code block to track, It can be one of the following states: Ru
 
 The final aim is to get a report after a code block finishes execution in a web service host on the cloud. 
 
+### Clients:
+Should have as many clients as possible (per language)
+For now testing service through: https://github.com/bacloud14/exec_client
 ### Security: 
 
 An important consideration, is that I try to secure the service without any form of authentication. Access to resources is open through API with obfuscated URLs, and all resources are claimed after 14 days the last execution for the current user session started running. On server no logging of any user information is there. The only exceptions are:
