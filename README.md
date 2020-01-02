@@ -44,7 +44,11 @@ bacloud[fourteen][at]gmail.com
 Credit
 ======
 Both data model and project code initially taken and modified from :
+
     What: express-locallibrary-tutorial
+    
     Source URL: https://github.com/mdn/express-locallibrary-tutorial
+    
     Initiator: MDN Web Docs
+    
     License: CC0-1.0
