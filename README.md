@@ -7,10 +7,14 @@ The project is in the developement stage and is not useful at the moment.
 
 A session is defined to fit few executions together, if you are working on different subjects, for example: 
 
-- Approximate the mean of stream data for a one day window
 - Regression model results
 - Simulations
 - Basically any bake and wait algorithm that takes minutes to hours to a few days.
+
+Executions of the regression model results could be:
+
+- Approximate the mean of stream data for a one day window
+- Running statistics, and learning algorithm
 
 An execution is a code block to track, It can be one of the following states: Running, Passive, Exec crushed, Execution crushed
 
@@ -23,7 +27,7 @@ The final aim is to get a report after a code block finishes execution in a web 
 
 ### Clients:
 Should have as many clients as possible (per language)
-For now testing service through: https://github.com/bacloud14/exec_client
+For now just testing the service through a notebook: https://github.com/bacloud14/exec_client
 ### Security: 
 
 An important consideration, is that I try to secure the service without any form of authentication. Access to resources is open through API with obfuscated URLs, and all resources are claimed after 14 days the last execution for the current user session started running. On server no logging of any user information is there. The only exceptions are:
@@ -33,13 +37,13 @@ An important consideration, is that I try to secure the service without any form
 
 #### To-do in Security:
 
-One day key client-server claim, used to change API POST encrypt endpoints (session/create/ , execution/create/ ...).
+One day key client-server claim, used to change API POST create endpoints (session/create/ , execution/create/ ...).
 
-In progress:
-All work is in development stage, this repository is the web service and not complete. Also, different clients are being built: Python, Go, 
+### In progress:
+All work is in development stage, this repository is the web service and not complete. Also, different clients are being built: Python, Go, etc.
 
 ### Hosting:
-The service is accessible through http://130.61.120.197/ to be less memorable.
+The service is accessible through http://130.61.120.197/ to be less memorable. So no domain name will be used as an opinion.
 
 ### Contact:
 bacloud[fourteen][at]gmail.com
