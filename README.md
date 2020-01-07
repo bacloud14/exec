@@ -25,6 +25,10 @@ An execution is a code block to track, It can be one of the following states: Ru
 
 The final aim is to get a report after a code block finishes execution in a web service host on the cloud. 
 
+### Data model:
+The data model simply replicates the previous assumptions. Through a kind of Snowflake model, specifically a cascading one to many relationships with some describing data.
+[User] 1 --- * [Session] 1 --- * [Execution] 1 --- * [Report]
+
 ### Clients:
 Should have as many clients as possible (per language)
 For now just testing the service through a notebook: https://github.com/bacloud14/exec_client
@@ -41,6 +45,8 @@ One day key client-server claim, used to change API POST create endpoints (sessi
 
 ### In progress:
 All work is in development stage, this repository is the web service and not complete. Also, different clients are being built: Python, Go, etc.
+As said earlier, the data model is like: [User] 1 --- * [Session] 1 --- * [Execution] 1 --- * [Report] but for now, there is no report, all is information describing an execution is simply embeded in the execution document. A better way would be to separate a new entity: Report which can hold streaming execution reports (like logging, evolution of training score, etc.)
+Reports are sent from client using Socket protocol, rather than Rest API like other create endpoints.
 
 ### Hosting:
 The service is accessible through http://130.61.120.197/ to be less memorable. So no domain name will be used as an opinion.
