@@ -29,6 +29,13 @@ The final aim is to get a report after a code block finishes execution in a web 
 The data model simply replicates the previous assumptions. Through a kind of Snowflake model, specifically a cascading one to many relationships with some describing data.
 [User] 1 --- * [Session] 1 --- * [Execution] 1 --- * [Report]
 
+The data model as it seems is very easy to deal with. Another way to implement this data model is using document embedding approach: 
+https://docs.mongodb.com/manual/tutorial/model-embedded-one-to-many-relationships-between-documents/
+which is easier to interact; However this comes at the expense of performance; Because whenever you load a user, you load all sessions, executions and reports with it.
+
+I found a compromise between a normalized model and the one using embedded documents; Described here:
+<img src="./Exec data model.svg">
+
 ### Clients:
 Should have as many clients as possible (per language)
 For now just testing the service through a notebook: https://github.com/bacloud14/exec_client
