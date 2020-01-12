@@ -19,8 +19,8 @@ Executions of the regression model results could be:
 An execution is a code block to track, It can be one of the following states: Running, Passive, Exec crushed, Execution crushed
 
 - Running: When code is still looking for a solution
-- Passive: When code is did not start, or started and successfully finished executing.
-- Exec crushed: When this service "Exec" crushed, the execution exited in a non manageable exception or the service bugged.
+- Passive: When code did not start, or started and successfully finished executing.
+- Exec crushed: When the service "Exec" crushed, the execution exited in a non manageable exception or the service bugged.
 - Execution crushed: When the tracked code block did not succeed in providing the rest waited, but exited in a manageable exception. 
 
 The final aim is to get a report after a code block finishes execution in a web service host on the cloud. 
