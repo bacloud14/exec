@@ -16,11 +16,7 @@ AuthorSchema.virtual("name").get(function() {
   if (this.uid) {
     fullname = this.uid;
   }
-
-  if (!this.uid) {
-    fullname = "";
-  }
-
+  
   return fullname;
 });
 
