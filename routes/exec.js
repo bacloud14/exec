@@ -92,19 +92,13 @@ router.post("/execution/create", execution_controller.execution_create_post);
 router.get("/execution/:id/delete", execution_controller.execution_delete_get);
 
 // POST request to delete execution.
-router.post(
-  "/execution/:id/delete",
-  execution_controller.execution_delete_post
-);
+router.post("/execution/:id/delete", execution_controller.execution_delete_post);
 
 // GET request to update execution.
 router.get("/execution/:id/update", execution_controller.execution_update_get);
 
 // POST request to update execution.
-router.post(
-  "/execution/:id/update",
-  execution_controller.execution_update_post
-);
+router.post("/execution/:id/update", execution_controller.execution_update_post);
 
 // GET request for one execution.
 router.get("/execution/:id", execution_controller.execution_detail);
