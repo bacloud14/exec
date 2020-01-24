@@ -7,7 +7,7 @@ const { sanitizeBody } = require("express-validator/filter");
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display list of all Authors.
-exports.author_list = function(req, res, next) {
+function author_list(req, res, next) {
   Author.find().exec(function(err, list_authors) {
     if (err) {
       return next(err);
@@ -26,7 +26,7 @@ exports.author_list = function(req, res, next) {
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display detail page for a specific Author.
-exports.author_detail = function(req, res, next) {
+function author_detail(req, res, next) {
   async.parallel(
     {
       author: function(callback) {
@@ -66,14 +66,14 @@ exports.author_detail = function(req, res, next) {
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Display Author create form on GET.
-exports.author_create_get = function(req, res, next) {
-  res.render("author_form", { title: "Create Author" });
-};
 
+function author_create_get(req, res, next) {
+ res.render("author_form", { title: "Create Author" });
+};
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Handle Author create on POST.
-exports.author_create_post = [
+author_create_post = [
   // Validate fields.
   body("uid")
     .isLength({ min: 1 })
@@ -135,3 +135,9 @@ exports.author_create_post = [
     }
   }
 ];
+
+module.exports = {
+  author_list, author_detail, 
+  author_create_get,
+  author_create_post, 
+}
