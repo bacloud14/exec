@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator/check");
 const { sanitizeBody } = require("express-validator/filter");
 
 // Display list of all Genre.
-exports.genre_list = function(req, res, next) {
+function genre_list(req, res, next) {
   Genre.find()
     .sort([["name", "ascending"]])
     .exec(function(err, list_genres) {
@@ -20,7 +20,7 @@ exports.genre_list = function(req, res, next) {
 };
 
 // Display detail page for a specific Genre.
-exports.genre_detail = function(req, res, next) {
+function genre_detail(req, res, next) {
   async.parallel(
     {
       genre: function(callback) {
@@ -52,12 +52,12 @@ exports.genre_detail = function(req, res, next) {
 };
 
 // Display Genre create form on GET.
-exports.genre_create_get = function(req, res, next) {
+function genre_create_get(req, res, next) {
   res.render("genre_form", { title: "Create Genre" });
 };
 
 // Handle Genre create on POST.
-exports.genre_create_post = [
+genre_create_post = [
   // Validate that the name field is not empty.
   body("name", "Genre name required")
     .isLength({ min: 1 })
@@ -108,7 +108,7 @@ exports.genre_create_post = [
 ];
 
 // Display Genre delete form on GET.
-exports.genre_delete_get = function(req, res, next) {
+function genre_delete_get(req, res, next) {
   async.parallel(
     {
       genre: function(callback) {
@@ -137,7 +137,7 @@ exports.genre_delete_get = function(req, res, next) {
 };
 
 // Handle Genre delete on POST.
-exports.genre_delete_post = function(req, res, next) {
+function genre_delete_post(req, res, next) {
   async.parallel(
     {
       genre: function(callback) {
@@ -175,7 +175,7 @@ exports.genre_delete_post = function(req, res, next) {
 };
 
 // Display Genre update form on GET.
-exports.genre_update_get = function(req, res, next) {
+function genre_update_get(req, res, next) {
   Genre.findById(req.params.id, function(err, genre) {
     if (err) {
       return next(err);
@@ -192,7 +192,7 @@ exports.genre_update_get = function(req, res, next) {
 };
 
 // Handle Genre update on POST.
-exports.genre_update_post = [
+genre_update_post = [
   // Validate that the name field is not empty.
   body("name", "Genre name required")
     .isLength({ min: 1 })
@@ -235,3 +235,14 @@ exports.genre_update_post = [
     }
   }
 ];
+
+module.exports = {
+  genre_list,
+  genre_detail,
+  genre_create_get,
+  genre_create_post,
+  genre_delete_get,
+  genre_delete_post,
+  genre_update_get,
+  genre_update_post,
+}
