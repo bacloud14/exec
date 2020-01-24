@@ -11,7 +11,7 @@ async function getUser(session_id) {
 }
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display list of all executions.
-exports.execution_list = function(req, res, next) {
+function execution_list(req, res, next) {
   getUser(req.session.id).then(function(result) {
     var uid = result[0]._id;
     const newId = new mongoose.Types.ObjectId(uid);
@@ -44,7 +44,7 @@ exports.execution_list = function(req, res, next) {
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display detail page for a specific execution.
-exports.execution_detail = function(req, res, next) {
+function execution_detail(req, res, next) {
   Execution.findById(req.params.id)
     .populate("session")
     .exec(function(err, execution) {
@@ -71,7 +71,7 @@ exports.execution_detail = function(req, res, next) {
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display execution create form on GET.
-exports.execution_create_get = function(req, res, next) {
+function execution_create_get(req, res, next) {
   getUser(req.session.id).then(function(result) {
     Session.find({ title: { $exists: true } }, "title").exec(function(
       err,
@@ -125,7 +125,7 @@ exports.execution_create_get = function(req, res, next) {
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Handle execution create on POST.
-exports.execution_create_post = [
+execution_create_post = [
   // Validate fields.
   body("session", "Session must be specified")
     .isLength({ min: 1 })
@@ -189,7 +189,7 @@ exports.execution_create_post = [
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Display execution delete form on GET.
-exports.execution_delete_get = function(req, res, next) {
+function execution_delete_get(req, res, next) {
   Execution.findById(req.params.id)
     .populate("session")
     .exec(function(err, execution) {
@@ -210,7 +210,7 @@ exports.execution_delete_get = function(req, res, next) {
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Handle execution delete on POST.
-exports.execution_delete_post = function(req, res, next) {
+function execution_delete_post(req, res, next) {
   // Assume valid execution id in field.
   Execution.findByIdAndRemove(req.body.id, function deleteexecution(err) {
     if (err) {
@@ -223,7 +223,7 @@ exports.execution_delete_post = function(req, res, next) {
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Display execution update form on GET.
-exports.execution_update_get = function(req, res, next) {
+function execution_update_get(req, res, next) {
   // Get session, authors and genres for form.
   async.parallel(
     {
@@ -259,7 +259,7 @@ exports.execution_update_get = function(req, res, next) {
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Handle execution update on POST.
-exports.execution_update_post = [
+execution_update_post = [
   // Validate fields.
   body("session", "Session must be specified")
     .isLength({ min: 1 })
@@ -322,3 +322,14 @@ exports.execution_update_post = [
     }
   }
 ];
+
+module.exports = {
+  execution_list, 
+  execution_detail,
+  execution_create_get,
+  execution_create_post,
+  execution_delete_get,
+  execution_delete_post,
+  execution_update_get,
+  execution_update_post,
+}
