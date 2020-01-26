@@ -36,7 +36,7 @@ async function create_session(req) {
   });
 }
 //renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
-exports.index = function(req, res) {
+function index(req, res) {
   async.parallel(
     {
       session_count: function(callback) {
@@ -67,7 +67,7 @@ exports.index = function(req, res) {
 };
 //sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display list of all sessions.
-exports.session_list = function(req, res, next) {
+function session_list(req, res, next) {
   getUser(req.session.id).then(function(result) {
     var uid = result[0]._id;
     const newId = new mongoose.Types.ObjectId(uid);
@@ -92,7 +92,7 @@ exports.session_list = function(req, res, next) {
 };
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Display detail page for a specific session.
-exports.session_detail = function(req, res, next) {
+function session_detail(req, res, next) {
   async.parallel(
     {
       session: function(callback) {
@@ -134,7 +134,7 @@ exports.session_detail = function(req, res, next) {
 
 //renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Display session create form on GET.
-exports.session_create_get = async function(req, res, next) {
+async function session_create_get(req, res, next) {
   create_session(req).then(function(res) {
     console.log("inserted");
   });
@@ -159,7 +159,7 @@ exports.session_create_get = async function(req, res, next) {
 
 // sendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrendersendrender
 // Handle session create on POST.
-exports.session_create_post = [
+session_create_post = [
   // Convert the genre to an array.
   (req, res, next) => {
     if (!(req.body.genre instanceof Array)) {
@@ -220,7 +220,7 @@ exports.session_create_post = [
 
 //renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Display session delete form on GET.
-exports.session_delete_get = function(req, res, next) {
+function session_delete_get(req, res, next) {
   async.parallel(
     {
       session: function(callback) {
@@ -253,7 +253,7 @@ exports.session_delete_get = function(req, res, next) {
 
 //renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Handle session delete on POST.
-exports.session_delete_post = function(req, res, next) {
+function session_delete_post(req, res, next) {
   // Assume the post has valid id (ie no validation/sanitization).
 
   async.parallel(
@@ -297,7 +297,7 @@ exports.session_delete_post = function(req, res, next) {
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Display session update form on GET.
-exports.session_update_get = function(req, res, next) {
+function session_update_get(req, res, next) {
   // Get session, authors and genres for form.
   async.parallel(
     {
@@ -352,7 +352,7 @@ exports.session_update_get = function(req, res, next) {
 
 // renderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrenderrender
 // Handle session update on POST.
-exports.session_update_post = [
+session_update_post = [
   // Convert the genre to an array.
   (req, res, next) => {
     if (!(req.body.genre instanceof Array)) {
@@ -438,3 +438,15 @@ exports.session_update_post = [
     });
   }
 ];
+
+module.exports = {
+  index,
+  session_list,
+  session_detail,
+  session_create_get,
+  session_create_post,
+  session_delete_get,
+  session_delete_post,
+  session_update_get,
+  session_update_post,
+}

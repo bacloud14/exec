@@ -11,7 +11,7 @@ var AuthorSchema = new Schema({
 
 // Virtual for author "full" name.
 AuthorSchema.virtual("name").get(function() {
-  var fullname = "";
+  var fullname = '';
 
   if (this.uid) {
     fullname = this.uid;
