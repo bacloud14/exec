@@ -37,8 +37,15 @@ I found a compromise between a normalized model and the one using embedded docum
 <img src="./Exec data model.svg">
 
 ### Clients:
+
 Should have as many clients as possible (per language)
 For now just testing the service through a notebook: https://github.com/bacloud14/exec_client
+
+### The web interface:
+It would normally turn to basic dashboard counting code being run; Thus all create endpoints will be hidden.
+The dashboard would contain: Numbers of active users, active sessions, running executions ...
+Also it would include a documentation about the service and the clients.
+
 ### Security: 
 
 An important consideration, is that I try to secure the service without any form of authentication. Access to resources is open through API with obfuscated URLs, and all resources are claimed after 14 days the last execution for the current user session started running. On server no logging of any user information is there. The only exceptions are:
