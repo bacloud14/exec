@@ -1,9 +1,9 @@
 var mongoose = require("mongoose");
 var moment = require("moment");
 
-var Schema = mongoose.Schema;
+var executionSchema = require('../schemas/execution');
 
-var executionSchema = new Schema({
+/* var executionSchema = new Schema({
   session: { type: Schema.ObjectId, ref: "Session", required: true }, // Reference to the associated session.
   imprint: { type: String, required: true },
   status: {
@@ -13,7 +13,7 @@ var executionSchema = new Schema({
     default: "Passive"
   },
   due_back: { type: Date, default: Date.now }
-});
+}); */
 
 // Virtual for this execution object's URL.
 executionSchema.virtual("url").get(function() {

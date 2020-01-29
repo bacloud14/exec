@@ -1,22 +1,20 @@
 var mongoose = require("mongoose");
 var moment = require("moment"); // For date handling.
 
-var Schema = mongoose.Schema;
+var AuthorSchema = require('../schemas/author');
 
-var AuthorSchema = new Schema({
+/* var AuthorSchema = new Schema({
   uid: { type: String, required: true, max: 100 },
   date_of_birth: { type: Date, default: Date.now },
   date_of_death: { type: Date }
-});
+}); */
 
 // Virtual for author "full" name.
 AuthorSchema.virtual("name").get(function() {
   var fullname = '';
-
   if (this.uid) {
     fullname = this.uid;
   }
-  
   return fullname;
 });
 
