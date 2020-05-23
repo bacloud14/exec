@@ -3,7 +3,10 @@
 
 ### Welcome to Code execution report. A light service to track the execution of your code (use only for development and experiment).
 
-The project is in the developement stage and is not useful at the moment.
+#### DISCLAIMER
+
+The whole idea of this project is to exercise a loose form of authentication and usage of a web service, yet trying to produce it in the most secure way possible. The use case itself is not really useful knowing available services online.
+The project is in the developement stage and not secure enough even for what it claims.
 
 A session is defined to fit some number of executions together. This way you can define sessions for different time slots (work for two days on a single subject) or for different subjects for example: 
 
@@ -66,7 +69,7 @@ Reports are sent from client using Socket protocol, rather than Rest API like ot
 
 ### Hosting:
 
-The service is accessible through http://###########/ (is down for the moment). No domain name will be used in my opinio.
+The service is accessible through http://IP_address/ (is down for the moment). No domain name will be used in my opinio.
 
 ### Contact:
 
