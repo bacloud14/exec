@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  
   p Welcome to #[em Code execution report], a light service to track execution of your code (use only for development and experiment).
   ul
     li= 'a session is defined to fit few executions together, if you are working on different subjects'
@@ -26,9 +27,18 @@ block content
       li #[strong Executions running:] !{data.execution_running_count}
       li #[strong Users:] !{data.author_count}
       li #[strong Your uniq UID:] !{_uid}
+
       p 
       p Time to live for your whole sessions is 14 days
+	  
+
   |
+
   hr(style="height: 1px; color: #F00; background-color: #F00; ")
   |
   h1 Exec Clients
+  
+  p The exec service has the following record counts:
+  ul
+    - var url = 'exec_demo.html';
+    a(href='/' + url) Python client demonstration
